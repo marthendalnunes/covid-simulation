@@ -1,12 +1,12 @@
 import streamlit as st
 
-import pages.covid_19.seir
-import pages.about
+import seir
+import about
 
 PAGES = {
-    "Seir": pages.covid_19.seir,
-    "Sobre": pages.about
-}
+    "Seir": seir,
+    "About": about
+ }
 
 def main():
     st.markdown("test")
