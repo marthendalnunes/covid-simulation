@@ -2,7 +2,7 @@
 from cadCAD.engine import ExecutionMode, ExecutionContext, Executor
 
 # Simulation configs, input any new simulations here
-from simulator.covid_19_seird import config
+from covid_19_seird import config
 
 
 #from {new_simulation} import config
