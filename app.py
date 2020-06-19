@@ -2,8 +2,6 @@ import streamlit as st
 import run
 
 
-
-
 def main():
     # Initial Values
     susceptible = 990
