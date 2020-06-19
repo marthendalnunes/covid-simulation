@@ -35,7 +35,7 @@ def s_exposed_population(params, substep, state_history, prev_state, policy_inpu
 
 
 def s_infected_population(params, substep, state_history, prev_state, policy_input):
-    updated_infected_population = prev_state['infected'] + policy_input['infected_growth'] - policy_input['recovered_growth']
+    updated_infected_population = prev_state['infected'] + policy_input['infected_growth'] - policy_input['recovered_growth'] - policy_input['recovered_growth']
     return ('infected', max(updated_infected_population, 0))
         
 
