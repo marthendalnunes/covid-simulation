@@ -1,7 +1,9 @@
-genesis_states = {
-    'susceptible': 9990,
-    'exposed': 10,
-    'infected': 0,
-    'recovered': 0,
-    'dead': 0
-}
+def get_genesis_states(susceptible, exposed, infected, recovered, dead):
+    genesis_states = {
+        'susceptible': susceptible,
+        'exposed': exposed,
+        'infected': infected,
+        'recovered': recovered,
+        'dead': dead
+    }
+    return genesis_states
