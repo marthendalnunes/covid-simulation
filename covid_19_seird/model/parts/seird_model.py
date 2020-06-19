@@ -4,7 +4,7 @@ import numpy as np
 ## Policies
 
 def p_exposed_growth(params, substep, state_history, prev_state):
-    exposed_population = params['infection_rate']*prev_state['infected']*(prev_state['susceptible']/(prev_state['susceptible']+ prev_state['exposed'] + prev_state['infected'] + prev_state['recovered']))
+    exposed_population = params['infection_rate']*prev_state['infected']*(prev_state['susceptible']/(prev_state['susceptible']+ prev_state['exposed'] + prev_state['infected'] + prev_state['recovered'] + prev_state['dead']))
     return {'exposed_growth': np.ceil(exposed_population)}
 
 
@@ -18,7 +18,7 @@ def p_recovered_growth(params, substep, state_history, prev_state):
     return {'recovered_growth': np.ceil(recovered_population)}
 
 def p_dead_growth(params, substep, state_history, prev_state):
-    dead_population = params['death_rate']*params['death_proportion_rate']
+    dead_population = params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
     return {'dead_growth': np.ceil(dead_population)}
 
 
