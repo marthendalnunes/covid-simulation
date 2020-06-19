@@ -7,10 +7,10 @@ import run
 def main():
     # Initial Values
     susceptible = 990
-    exposed = 7
-    infected = 1
-    dead = 1
-    recovered = 1
+    exposed = 10
+    infected = 0
+    dead = 0
+    recovered = 0
 
     # Sys parameters
     r0 = 2.5
@@ -19,6 +19,7 @@ def main():
     death_rate = 0.01
     death_proportion_rate = 0.11
 
+    
     st.markdown("# SEIR Model")
     st.sidebar.markdown("Variáveis iniciais:")
     susceptible = st.sidebar.number_input("Suscetívceis", value=susceptible)
@@ -32,11 +33,11 @@ def main():
     recovering_rate = st.sidebar.number_input("Taxa de recuperação", value=recovering_rate, max_value=1.0)
     death_rate = st.sidebar.number_input("Taxa de mortalidade", value=death_rate, max_value=1.0)
     death_proportion_rate = st.sidebar.number_input("Taxa proporcional de mortalidade", value=death_proportion_rate, max_value=1.0)
-    
-   
+     
     if st.sidebar.button("Rodar simulação"):
+        import run
         experiments = run.run(r0, recovering_rate, exposure_rate, death_rate, death_proportion_rate,susceptible, exposed, infected, recovered, dead)
-        seir_df = experiments.dataset[0]
+        seir_df = experiments.dataset[len(experiments.index)-1] # get the last dataset
         st.write(seir_df)
         seir_df = seir_df.filter(items=['susceptible','exposed','infected','recovered','dead'])
         st.line_chart(seir_df)
