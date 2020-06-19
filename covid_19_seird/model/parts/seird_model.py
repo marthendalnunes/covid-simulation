@@ -5,21 +5,21 @@ import numpy as np
 
 def p_exposed_growth(params, substep, state_history, prev_state):
     exposed_population = params['infection_rate']*prev_state['infected']*(prev_state['susceptible']/(prev_state['susceptible']+ prev_state['exposed'] + prev_state['infected'] + prev_state['recovered'] + prev_state['dead']))
-    return {'exposed_growth': np.ceil(exposed_population)}
+    return {'exposed_growth': max(np.ceil(exposed_population),0)}
 
 
 def p_infected_growth(params, substep, state_history, prev_state):
     infected_population = params['exposure_rate']*prev_state['exposed'] - (1 - params['death_rate']) * params['recovering_rate'] * prev_state['infected'] - params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
-    return {'infected_growth': np.ceil(infected_population)}
+    return {'infected_growth': max(np.ceil(infected_population),0)}
 
 
 def p_recovered_growth(params, substep, state_history, prev_state):
     recovered_population = (1 - params['death_rate']) * params['recovering_rate'] * prev_state['infected']
-    return {'recovered_growth': np.ceil(recovered_population)}
+    return {'recovered_growth': max(np.ceil(recovered_population),0)}
 
 def p_dead_growth(params, substep, state_history, prev_state):
     dead_population = params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
-    return {'dead_growth': np.ceil(dead_population)}
+    return {'dead_growth': max(np.ceil(dead_population),0)}
 
 
 ## SUFs
@@ -35,7 +35,7 @@ def s_exposed_population(params, substep, state_history, prev_state, policy_inpu
 
 
 def s_infected_population(params, substep, state_history, prev_state, policy_input):
-    updated_infected_population = prev_state['infected'] + policy_input['infected_growth'] - policy_input['recovered_growth'] - policy_input['recovered_growth']
+    updated_infected_population = prev_state['infected'] + policy_input['infected_growth'] - policy_input['recovered_growth'] - policy_input['dead_growth']
     return ('infected', max(updated_infected_population, 0))
         
 

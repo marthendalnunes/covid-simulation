@@ -4,8 +4,8 @@ import run
 
 def main():
     # Initial Values
-    susceptible = 990
-    exposed = 10
+    susceptible = 9900
+    exposed = 100
     infected = 0
     dead = 0
     recovered = 0
