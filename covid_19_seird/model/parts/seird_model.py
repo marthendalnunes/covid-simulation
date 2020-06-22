@@ -14,11 +14,18 @@ def p_infected_growth(params, substep, state_history, prev_state):
 
 
 def p_recovered_growth(params, substep, state_history, prev_state):
-    recovered_population = (1 - params['death_rate']) * params['recovering_rate'] * prev_state['infected']
+    if prev_state['infected'] == 1:
+       recovered_population = 1
+    else:
+        recovered_population = (1 - params['death_rate']) * params['recovering_rate'] * prev_state['infected']
     return {'recovered_growth': max(np.ceil(recovered_population),0)}
 
 def p_dead_growth(params, substep, state_history, prev_state):
-    dead_population = params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
+    if prev_state['infected'] == 1:
+        dead_population = 0
+    else:
+        dead_population = params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
+
     return {'dead_growth': max(np.ceil(dead_population),0)}
 
 
