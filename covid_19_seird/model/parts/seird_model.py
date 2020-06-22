@@ -25,7 +25,6 @@ def p_dead_growth(params, substep, state_history, prev_state):
         dead_population = 0
     else:
         dead_population = params['death_rate'] * params['death_proportion_rate'] * prev_state['infected']
-
     return {'dead_growth': max(np.ceil(dead_population),0)}
 
 
