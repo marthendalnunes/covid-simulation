@@ -1,4 +1,4 @@
-def get_config(r0, recovering_rate, exposure_rate, death_rate, death_proportion_rate,susceptible, exposed, infected, recovered, dead):
+def get_config(simulation_time_steps, r0, recovering_rate, exposure_rate, death_rate, death_proportion_rate,susceptible, exposed, infected, recovered, dead):
     MONTE_CARLO_RUNS = 1 # N monte carlo runs
 
     from cadCAD.configuration import append_configs
@@ -11,7 +11,7 @@ def get_config(r0, recovering_rate, exposure_rate, death_rate, death_proportion_
     sim_config = config_sim (
         {
             'N': MONTE_CARLO_RUNS,
-            'T': range(SIMULATION_TIME_STEPS), # number of timesteps
+            'T': range(simulation_time_steps), # number of timesteps
             'M': get_sys_params(r0, recovering_rate, exposure_rate, death_rate, death_proportion_rate),
         }
     )
