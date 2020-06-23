@@ -42,11 +42,11 @@ def main():
     r"""
     Where the parameters are:
     - 𝛽: expected amount of people an infected person infects per day
-    - 𝛾: proportion of infected recovering per day [\gamma = 1 / recovering days]
+    - 𝛾: proportion of infected recovering per day [𝛾 = 1 / recovering days]
     - 𝛿: expected rate that exposed people turn into infected
-    - 𝜌: rate at wich infected people die per day [\rho = 1 / amount of days to an infected person die]
+    - 𝜌: rate at wich infected people die per day [𝜌 = 1 / amount of days to an infected person die]
     - 𝛼: death probability
-    - 𝑅₀: total number of people an infected person infects (R = \beta / \gamma)
+    - 𝑅₀: total number of people an infected person infects (R₀ = 𝛽 / 𝛾)
     """
 
     st.sidebar.markdown("Simulation Parameters:")
