@@ -9,7 +9,7 @@ https://covid-19-demo-streamlit.herokuapp.com/
 Use the package manager [pip](https://pip.pypa.io/en/stable/) to install the requirements.
 
 ```bash
-pip install requirements.txt
+pip install -r requirements.txt
 ```
 
 ## Contributing
